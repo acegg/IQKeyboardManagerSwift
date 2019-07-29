@@ -1,5 +1,5 @@
 //
-//  IQKeyboardManagerConstantsInternal.swift
+//  IQInvocation.swift
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-16 Iftekhar Qurashi.
 //
@@ -21,4 +21,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+import UIKit
+
+@objc public class IQInvocation: NSObject {
+    @objc public weak var target: AnyObject?
+    @objc public var action: Selector
+    
+    @objc public init(_ target: AnyObject, _ action: Selector) {
+        self.target = target
+        self.action = action
+    }
+    
+    @objc public func invoke(from: Any) {
+        if let target = target {
+            UIApplication.shared.sendAction(action, to: target, from: from, for: UIEvent())
+        }
+    }
+
+    deinit {
+        target = nil
+    }
+}

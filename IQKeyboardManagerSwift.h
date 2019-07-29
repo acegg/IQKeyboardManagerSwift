@@ -1,5 +1,5 @@
 //
-//  IQUIWindow+Hierarchy.swift
+//  IQKeyboardManagerSwift.h
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-16 Iftekhar Qurashi.
 //
@@ -21,33 +21,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <UIKit/UIKit.h>
 
-import UIKit
+//! Project version number for IQKeyboardManagerSwift.
+FOUNDATION_EXPORT double IQKeyboardManagerSwiftVersionNumber;
 
-/** @abstract UIWindow hierarchy category.  */
-public extension UIWindow {
+//! Project version string for IQKeyboardManagerSwift.
+FOUNDATION_EXPORT const unsigned char IQKeyboardManagerSwiftVersionString[];
 
-    /** @return Returns the current Top Most ViewController in hierarchy.   */
-    public func topMostWindowController()->UIViewController? {
-        
-        var topController = rootViewController
-        
-        while let presentedController = topController?.presentedViewController {
-            topController = presentedController
-        }
-        
-        return topController
-    }
-    
-    /** @return Returns the topViewController in stack of topMostWindowController.    */
-    public func currentViewController()->UIViewController? {
-        
-        var currentViewController = topMostWindowController()
-        
-        while currentViewController != nil && currentViewController is UINavigationController && (currentViewController as! UINavigationController).topViewController != nil {
-            currentViewController = (currentViewController as! UINavigationController).topViewController
-        }
+// In this header, you should import all the public headers of your framework using statements like #import <IQKeyboardManagerSwift/PublicHeader.h>
 
-        return currentViewController
-    }
-}
+
